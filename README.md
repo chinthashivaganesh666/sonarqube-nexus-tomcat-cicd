@@ -2,33 +2,6 @@
 
 This project implements a CI/CD pipeline to automatically build and deploy a Java web application to multiple Apache Tomcat environments using GitHub Actions.
 
-## Project Architecture
-
-GitHub Repository
-        |
-        v
-GitHub Actions
-        |
-        v
-Maven Build
-        |
-        v
-WAR File
-        |
-        v
-Environment Selection
-        |
-   +----+----+---------+
-   |    |    |         |
-  DEV  TEST PRE-PROD  PROD
-   |    |    |         |
- Tomcat Tomcat Tomcat Tomcat
-   |    |    |         |
-   +----+----+---------+
-        |
-        v
-Application Deployment
-
 ## Technologies Used
 
 - AWS EC2
@@ -101,16 +74,3 @@ After deployment, the application can be accessed using:
 
 http://<EC2-PUBLIC-IP>:8080/TrainBook
 
-## Project Structure
-
-text
-tomcat-multi-env-cicd/
-│
-├── src/
-├── WebContent/
-├── pom.xml
-├── README.md
-│
-└── .github/
-    └── workflows/
-        └── cicd.yaml
