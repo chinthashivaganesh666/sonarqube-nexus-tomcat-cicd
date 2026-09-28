@@ -38,11 +38,6 @@ jobs:
                     -Dsonar.token="$SONAR_TOKEN"
 
           #NEXUS
-           - name: setup java 8 again
-             uses: actions/setup-java@v4
-             with:
-               distribution: temurin
-               java-version: '8'
            - name: configure maven settings.xml
              run: |
               mkdir -p ~/.m2
