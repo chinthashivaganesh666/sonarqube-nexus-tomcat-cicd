@@ -52,7 +52,8 @@ jobs:
                   </servers>
                 </settings>
                 EOF
-                
+
+           #artifact deploy     
            - name: Deploy Artifact to nexus
              run: |
                mvn deploy \
