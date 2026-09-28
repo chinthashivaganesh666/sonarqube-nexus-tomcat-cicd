@@ -38,27 +38,30 @@ jobs:
                     -Dsonar.token="$SONAR_TOKEN"
 
           #NEXUS
-           - name: configure maven settings
+           - name: setup java 8 again
+             uses: actions/setup-java@v4
+             with:
+               distribution: temurin
+               java-version: '8'
+           - name: configure maven settings.xml
              run: |
-               mkdir -p ~/.m2
-               cat > ~/.m2/settings.xml <<EOF
-               <settings>
-                 <servers>
-                   <server>
-                     <id>nexus</id>
-                     <username>${{ secrets.NEXUS_USERNAME }}</username>
-                     <password>${{ secrets.NEXUS_PASSWORD }}</password>
-                   </server>
-                 </servers>
-               </settings>
-               EOF
-
-           #artifact deploy     
-           - name: Deploy Artifact to nexus
+              mkdir -p ~/.m2
+              cat > ~/.m2/settings.xml <<EOF
+              <settings>
+               <servers>
+                <server>
+                 <id>nexus</id>
+                 <username>${{ secrets.NEXUS_USERNAME }}</username>
+                 <password>${{ secrets.NEXUS_PASSWORD }}</password>
+                </server>
+               </servers>
+              </settings>
+              EOF
+           - name: deploy artifact to nexus
              run: |
-               mvn deploy \
-                   -DskipTests \
-                   -DaltDeploymentRepository=nexus::default::${{ secrets.NEXUS_REPO_URL }}
+              mvn deploy \
+               -DskipTests \
+               -DaltDeploymentRepository=nexus::default::${{ secrets.NEXUS_REPO_URL }}
 
         #TOMCAT
            - name: deploy war to tomcat
