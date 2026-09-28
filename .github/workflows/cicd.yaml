@@ -48,10 +48,10 @@ jobs:
                      <id>nexus</id>
                      <username>${{ secrets.NEXUS_USERNAME }}</username>
                      <password>${{ secrets.NEXUS_PASSWORD }}</password>
-                    </server>
-                  </servers>
-                </settings>
-                EOF
+                   </server>
+                 </servers>
+               </settings>
+               EOF
 
            #artifact deploy     
            - name: Deploy Artifact to nexus
